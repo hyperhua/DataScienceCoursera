@@ -4,12 +4,12 @@
 <li>“ID”: participant ID; range from 1-30.
 
 <li>“Act.label”: Activity label; 6 activities were performed: 
-<br />1.	WALKING,  
-<br />2.	WALKING_UPSTAIRS,  
-<br />3.	WALKING_DOWNSTAIRS,  
-<br />4.	SITTING,  
-<br />5.	STANDING,  
-<br />6.	LAYING  
+...<br />1.	WALKING,  
+...<br />2.	WALKING_UPSTAIRS,  
+...<br />3.	WALKING_DOWNSTAIRS,  
+...<br />4.	SITTING,  
+...<br />5.	STANDING,  
+...6.	LAYING  
 
 <li>“dat.set”: Which dataset were extracted for the participant: 
 <br />1.	Train: from training data directory,  
