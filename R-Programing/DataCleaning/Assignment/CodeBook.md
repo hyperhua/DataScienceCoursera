@@ -3,7 +3,13 @@
 | Column        |    Summary        | Note  |
 | ------------- |:-------------:| -----:|
 | ID            | Number: 1 - 30 | Participant ID |
-| Act.label     |  Character: activity performance     |   coded as 1-6 in the datasheet |
+| Act.label     |  Character: activity performance     |   coded as 1-6 in the datasheet 
+<br />1.	WALKING,  
+<br />2.	WALKING_UPSTAIRS,  
+<br />3.	WALKING_DOWNSTAIRS,  
+<br />4.	SITTING,  
+<br />5.	STANDING,  
+<br />6.	LAYING  |
 |               | WALKING      |     |
 
 
