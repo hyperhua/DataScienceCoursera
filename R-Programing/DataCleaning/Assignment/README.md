@@ -2,7 +2,7 @@ This is a homework assignment for data cleaning using R. The data (Human Activit
 
 The feature measurements were collected from total of 30 participants with n=21 in training dataset and n=9 in testing dataset. As quoted from the study file, “Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist”.  The feature measurements used in this cleaning data assignment included (total of 33 features * 2 for mean + standard deviation from the signals): 
 
-tBodyAcc-XYZ
+tBodyAcc-XYZ\n
 tGravityAcc-XYZ
 tBodyAccJerk-XYZ
 tBodyGyro-XYZ
