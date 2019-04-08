@@ -9,7 +9,7 @@
 ...<br />3.	WALKING_DOWNSTAIRS,  
 ...<br />4.	SITTING,  
 ...<br />5.	STANDING,  
-...6.	LAYING  
+...<br />6.	LAYING  
 
 <li>“dat.set”: Which dataset were extracted for the participant: 
 <br />1.	Train: from training data directory,  
