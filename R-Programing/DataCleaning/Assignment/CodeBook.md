@@ -1,5 +1,12 @@
 # CodeBook
 
+| Column        |    Summary        | Note  |
+| ------------- |:-------------:| -----:|
+| ID            | Number: 1 - 30 | Participant ID |
+| Act.label     |  Character: activity performance     |   coded as 1-6 in the datasheet |
+|               | WALKING      |     |
+
+
 <li>“ID”: participant ID; range from 1-30.
 
 <li>“Act.label”: Activity label; 6 activities were performed: 
