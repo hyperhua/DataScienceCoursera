@@ -10,26 +10,24 @@ tGravityAcc-XYZ<br />
 
 tBodyAccJerk-XYZ<br />
 
-tBodyGyro-XYZ
-tBodyGyroJerk-XYZ
-tBodyAccMag
-tGravityAccMag
-tBodyAccJerkMag
-tBodyGyroMag
-tBodyGyroJerkMag
-fBodyAcc-XYZ
-fBodyAccJerk-XYZ
-fBodyGyro-XYZ
-fBodyAccMag
+tBodyGyro-XYZ  
+tBodyGyroJerk-XYZ  
+tBodyAccMag  
+tGravityAccMag  
+tBodyAccJerkMag  
+tBodyGyroMag  
+tBodyGyroJerkMag  
+fBodyAcc-XYZ  
+fBodyAccJerk-XYZ  
+fBodyGyro-XYZ  
+fBodyAccMag  
 fBodyAccJerkMag<br />
 
 fBodyGyroMag<br />
 
 fBodyGyroJerkMag
 
-<li>Line 1
-
-From the “run_analysis.R” file, I did the following steps and resulted with a tidy file named “tidy.ave.dat”.
+<li> From the “run_analysis.R” file, I did the following steps and resulted with a tidy file named “tidy.ave.dat”.
 1.	Merges the training and the test sets to create one data set.
 2.	Extracts only the measurements on the mean and standard deviation for each measurement. 
 3.	Uses descriptive activity names to name the activities in the data set
