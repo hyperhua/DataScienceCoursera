@@ -1,0 +1,96 @@
+---
+title: "Weight Lifting Exercises Dataset"
+output: html_document
+---
+
+
+```{r test,echo=FALSE, cache=TRUE}
+### load the data in ###
+input.train.dat <- read.csv("pml-training.csv", header=T)
+input.valid.dat <- read.csv("pml-testing.csv", header=T)
+
+
+```
+
+
+# Data Overview
+
+This human activity recognition research collected 6 participants to record five ways in performance of barbell lifts that measured from meters on the belt, forearm, arm, and dumbbell. The 5 ways of barbell lifts activities (column name: "classe", denoted as A-E) were (<http://groupware.les.inf.puc-rio.br/har>):
+
+    1. exactly according to the specification (Class A),
+    2. throwing the elbows to the front (Class B), 
+    3. lifting the dumbbell only halfway (Class C), 
+    4. lowering the dumbbell only halfway (Class D), and 
+    5. throwing the hips to the front (Class E).
+
+The goal for this study is to predict what type of activities from accelerometers data on the belt, forearm, arm, and dumbell. 
+
+### Preparing data
+
+We split 'pml-training' data with 60% samples as a training data, the rest 40% sample as a testing data to test our model. The validation dataset will be data 'pml-testing'.
+
+
+```{r}
+library(caret)
+### get data from accelerometers on the belt, forearm, arm, and dumbell
+use.column <- c(grep("user_name", names(input.train.dat)), grep("^accel_", names(input.train.dat)),grep("^total_accel_", names(input.train.dat)), grep("classe", names(input.train.dat)))
+
+
+use.train.dat <- input.train.dat[ , use.column]
+
+#### create training and testing dataset in training data ###
+set.seed(12345)
+inTrain <- createDataPartition(y = use.train.dat$classe, p = 0.6, list = FALSE)
+
+train.dat <- use.train.dat[inTrain, ]
+test.dat <- use.train.dat[-inTrain, ] ### independent dataset for accuracy 
+```
+
+
+### PCA for preprocessing data
+
+Principle component analysis (PCA) was applied for preprocessing the predictors. Based on our training data, we need 10 principle components to capture 95% variability.
+
+```{r preproc}
+### preprocessing with pca by creating new variables that captured 95% variability###
+col.usename.classe <- seq(1, dim(train.dat)[2])[names(train.dat) %in% c("user_name", "classe")]
+
+pre.proc <- preProcess(train.dat[,-col.usename.classe], method = "pca",thresh = 0.95) 
+pre.proc ### See how many variables needed 
+```
+
+
+
+### Build Random forest model with cross validation to test our model prediction
+
+We built the model via `random forest` procedure with 5-fold cross validation. 
+```{r rfmodel}
+train.PC.var <- predict(pre.proc, train.dat[,-col.usename.classe])
+train.PC.var$classe <- train.dat$classe
+modelFit.pc.train <- train(classe ~ . , method = "rf", data = train.PC.var, trControl=trainControl(method = "cv", number = 5))
+
+```
+
+###  see model accuracy from testing data
+we applied our prediction model to the testing data for accuracy estimator.
+
+```{r indval}
+test.dat.PC.var <- predict(pre.proc, test.dat[,-col.usename.classe])
+test.dat.PC.var$classe <- test.dat$classe
+pred.result.pc.test <- predict(modelFit.pc.train, test.dat.PC.var)
+
+confusionMatrix(test.dat$classe, pred.result.pc.test)
+```
+
+### Apply the developed model to validation dataset
+
+The predicted classe from our model is:
+
+```{r valid, echo=FALSE}
+
+use.valid.dat <- input.valid.dat[, names(input.valid.dat) %in% names(test.dat)] 
+
+use.valid.dat.afterPC <- predict(pre.proc, use.valid.dat[ , -c(1)])
+predict(modelFit.pc.train, use.valid.dat.afterPC)
+
+```
